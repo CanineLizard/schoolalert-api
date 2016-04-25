@@ -1,5 +1,7 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+
 $DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "Chip0100";
