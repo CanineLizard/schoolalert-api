@@ -3,12 +3,12 @@
 
     $teachercode = $_POST['teachercode'];
 
-    $user_id = $_SESSION['user_session'];
-    $stmt = $db->prepare("SELECT * FROM users WHERE code='".$teachercode."' LIMIT 1");        
-    $stmt->execute(array(":code" =>$teachercode));
+    $user_token = $_POST['token'];
+    $stmt = $db->prepare("SELECT * FROM users WHERE schoolcode='".$teachercode."' LIMIT 1");        
+    $stmt->execute(array(":schoolcode"=>$teachercode));
     $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
     if($stmt->rowCount() > 0){
-           $stmt = $db->prepare("UPDATE users SET teachercode='".$teachercode."' WHERE id='".$user_id."'");
+           $stmt = $db->prepare("UPDATE users SET teachercode='".$teachercode."' WHERE token='".$user_token."'");
            $stmt->execute(array(":teachercode"=>$teachercode));
            echo '{"success":true}';   
         }

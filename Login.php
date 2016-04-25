@@ -10,8 +10,8 @@ include 'loginDBconfig.php';
         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         
        if($stmt->rowCount() > 0){
-           $_SESSION['user_session'] = $userRow['id'];
-            echo '{"success":true,"type":"'.$userRow['type'].'"}';   
+          
+            echo '{"success":true,"type":"'.$userRow['type'].'", "Session":"'.$userRow['id'].'", "token": "'.$userRow['token'].'"}';   
         } else {
             echo '{"success":false,"error":"Username or password was incorrect."}';
        }

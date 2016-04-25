@@ -1,6 +1,6 @@
 <?php
    $success = false;
-   $code = $_POST["code"];
+   $code = $_POST['code'];
    if (strpos($code,"'") === false) {
       $dbh = new mysqli('localhost', 'root', NULL, 'schoolchat');
       $sql = "SELECT name,text FROM messages WHERE code='$code'";

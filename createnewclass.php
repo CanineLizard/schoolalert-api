@@ -3,9 +3,9 @@ include 'loginDBconfig.php';
     
     $classcode = $_POST['classcode'];
 
-        $user_id = $_SESSION['user_session'];
-        $stmt = $db->prepare("SELECT * FROM users WHERE id='".$user_id."'" );
-        $stmt->execute(array(":id"=>$user_id));
+        $user_token = $_POST['token'];
+        $stmt = $db->prepare("SELECT * FROM users WHERE token='".$user_token."'" );
+        $stmt->execute(array(":token"=>$user_token));
         $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
         
         $firstname = $userRow['firstname'];

@@ -1,16 +1,26 @@
 <?php
-    $db = new PDO('mysql:host=127.0.0.1;dbname=schoolchat','root','');
+    include 'loginDBconfig.php';
 
-    if(isset($_POST['text']) && isset($_POST['name'])){
+    $user_token = $_POST['token'];
+    $stmt = $db->prepare("SELECT * FROM users WHERE token='".$user_token."'");        
+    $stmt->execute(array(":token" =>$user_token));
+    $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+    $user = ucwords($userRow['firstname']) . " " . ucwords($userRow['lastname']); 
+
+
+    if(isset($_POST['text'])){
         $text = strip_tags(stripslashes($_POST['text']));
-        $name = strip_tags(stripslashes($_POST['name']));
-        $code = intval($_POST['code']);
+        $name = $user;
+        $code = $_POST['code'];
             if(!empty($text) && !empty($name)){
               
                 $stmt = $db->prepare("INSERT INTO messages VALUES('', ?, ?, ?);");
                 $stmt->execute(array($name, $text, $code));
                 
-                echo "<li class='cm'><b>".ucwords($name)."</b> - ".$text."</li>";
+                  echo '{"success":true}';  
+            }else{
+                echo '{"success": false}';
             }
+            
     }
 ?>
