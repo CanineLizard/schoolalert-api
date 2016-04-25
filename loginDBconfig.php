@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://71.77.192.81');
+header('Access-Control-Allow-Origin: http://schoolalert.tk');
 
 $DB_host = "localhost";
 $DB_user = "root";
