@@ -3,7 +3,7 @@ session_start();
 
 $DB_host = "localhost";
 $DB_user = "root";
-$DB_pass = "";
+$DB_pass = "Chip0100";
 $DB_name = "schoolchat";
 
 try
